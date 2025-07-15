@@ -15,7 +15,7 @@ public class BreedsTest extends BaseTest {
     @DisplayName("Deve Listar todas as raças com sucesso")
     public void deveListarTodasAsRacas(){
         given()
-
+                .spec(requestSpec)
         .when()
                 .get("/breeds/list/all")
         .then()
@@ -31,6 +31,7 @@ public class BreedsTest extends BaseTest {
     public void deveListarImagensDeRacaExistente(){
 
         given()
+                .spec(requestSpec)
                 .pathParam("breed","hound")
         .when()
                 .get("/breed/{breed}/images")
@@ -43,10 +44,11 @@ public class BreedsTest extends BaseTest {
 
     @Test
     @Tag("negativo")
-    @DisplayName("Não deve listar imagens com raça inexistente")
+    @DisplayName("não deve listar imagens com raça inexistente")
     public void NaoDeveListarImagensDeRacaInexistente(){
 
         given()
+                .spec(requestSpec)
                 .pathParam("breed","raca-inexistente")
         .when()
                 .get("/breed/{breed}/images")

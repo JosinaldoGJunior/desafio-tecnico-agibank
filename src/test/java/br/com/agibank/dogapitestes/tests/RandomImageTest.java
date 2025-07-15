@@ -16,7 +16,7 @@ public class RandomImageTest extends BaseTest {
     @DisplayName("Deve listar imagens randômicas")
     public void deveListarImagensRandomicas(){
         given()
-
+                .spec(requestSpec)
         .when()
                 .get("/breeds/image/random")
         .then()
@@ -29,14 +29,14 @@ public class RandomImageTest extends BaseTest {
     @Test
     @Tag("positivo")
     @DisplayName("Deve listar uma quantidade específica de imagens randômicas")
-    public void deveListarQuantidadeEspedificaDeImagens() {
+    public void deveListarQuantidadeEspecificaDeImagens() {
         int quantidadePedida = 50;
 
         given()
-
-                .when()
+                .spec(requestSpec)
+        .when()
                 .get("/breeds/image/random/{quantidade}", quantidadePedida)
-                .then()
+        .then()
                 .statusCode(HttpsURLConnection.HTTP_OK)
                 .body("status", equalTo("success"))
                 .body("message", hasSize(quantidadePedida));
@@ -59,6 +59,4 @@ public class RandomImageTest extends BaseTest {
                 .body("status", equalTo("success"))
                 .body("message", hasSize(50));
     }
-
-
 }
